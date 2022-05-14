@@ -15,16 +15,18 @@ export const createTicket = createAsyncThunk(
   "tickets/create",
   async (ticketData, thunkAPI) => {
     try {
+      // const a = 1 / 0;
       const token = thunkAPI.getState().auth.user.token;
       return await ticketService.createTicket(ticketData, token);
     } catch (error) {
+      // console.log(error);
       const message =
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
         error.message ||
         error.toString();
-
+      // console.log(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -50,7 +52,7 @@ export const ticketSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        console.log(action);
+        // console.log(action);
       });
   },
 });
