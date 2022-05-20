@@ -24,6 +24,21 @@ const getTickets = async (token) => {
     },
   };
   const response = await axios.get(API_URL, config);
+  // console.log(response);
+
+  return response.data;
+};
+
+// Get user ticket
+const getTicket = async (ticketId, token) => {
+  const config = {
+    // Check POSTMAN for reference
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(API_URL + ticketId, config);
+  // console.log(response);
 
   return response.data;
 };
@@ -31,6 +46,7 @@ const getTickets = async (token) => {
 const ticketService = {
   createTicket,
   getTickets,
+  getTicket,
 };
 
 export default ticketService;
